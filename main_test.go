@@ -14,7 +14,9 @@ type Case struct {
 	ExpectedMatch bool
 }
 
-var testCases = []Case{}
+var testCases = []Case{
+	{Constraint: "1.0.0", Semvers: []string{"1.0.0"}, ExpectedMatch: true},
+}
 
 func TestHashicorp(t *testing.T) {
 	for _, testCase := range testCases {
