@@ -1,7 +1,8 @@
 # semver-comparison
 
-Comparing github.com/Masterminds/semver, github.com/blang/semver, and
-github.com/hashicorp/go-version.
+Comparing [Masterminds/semver](https://github.com/Masterminds/semver),
+[blang/semver](https://github.com/blang/semver), and
+[hashicorp/go-version](https://github.com/hashicorp/go-version).
 
 Result:
 ```
