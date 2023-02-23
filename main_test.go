@@ -43,10 +43,18 @@ var testCases = []Case{
 	//   ~2.3 is equivalent to >= 2.3, < 2.4
 	{Constraint: "~2.3", Semvers: []string{"2.3.0", "2.3.17"}, ExpectedMatch: true},
 	{Constraint: "~2.3", Semvers: []string{"2.4", "2.4.0"}, ExpectedMatch: false},
+	//   blang does not play nice with anything less than major.minor.patch, so
+	//   let's test that
+	{Constraint: "~2.3.0", Semvers: []string{"2.3.0", "2.3.17"}, ExpectedMatch: true},
+	{Constraint: "~2.3.0", Semvers: []string{"2.4.0"}, ExpectedMatch: false},
 	// caret range/major comparison (^)
 	//   ^2.3 is equivalent to >= 2.3, < 3
 	{Constraint: "^2.3", Semvers: []string{"2.3.0", "2.3.17", "2.4.0", "2.99.0"}, ExpectedMatch: true},
 	{Constraint: "^2.3", Semvers: []string{"3.0", "3.0.0"}, ExpectedMatch: false},
+	//   blang does not play nice with anything less than major.minor.patch, so
+	//   let's test that
+	{Constraint: "^2.3.0", Semvers: []string{"2.3.0", "2.3.17", "2.4.0", "2.99.0"}, ExpectedMatch: true},
+	{Constraint: "^2.3.0", Semvers: []string{"3.0.0"}, ExpectedMatch: false},
 	// wildcards (x, *, incomplete versions)
 	{Constraint: "5.x.x", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
 	{Constraint: "5.*.*", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
