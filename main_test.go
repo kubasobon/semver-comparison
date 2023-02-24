@@ -75,17 +75,17 @@ var testCases = []Case{
 	{Constraint: ">1.0.0 <2.0.0 || >3.0.0 !4.2.1", Semvers: []string{"4.2.1", "2.1.1"}, ExpectedMatch: false},
 }
 
-func TestHashicorp(t *testing.T) {
+func TestMasterminds(t *testing.T) {
 	for i, testCase := range testCases {
-		constraint, err := hashicorp.NewConstraint(testCase.Constraint)
+		constraint, err := masterminds.NewConstraint(testCase.Constraint)
 		if err != nil {
-			t.Errorf("%d: hashicorp lib could not parse %q constraint", i+1, testCase.Constraint)
+			t.Errorf("%d: Masterminds lib could not parse %q constraint", i+1, testCase.Constraint)
 			continue
 		}
 		for _, semverString := range testCase.Semvers {
-			semver, err := hashicorp.NewSemver(semverString)
+			semver, err := masterminds.NewVersion(semverString)
 			if err != nil {
-				t.Errorf("%d: hashicorp lib could not parse %q as semver", i+1, semverString)
+				t.Errorf("%d: Masterminds lib could not parse %q as semver", i+1, semverString)
 				continue
 			}
 
@@ -125,17 +125,17 @@ func TestBlang(t *testing.T) {
 	}
 }
 
-func TestMasterminds(t *testing.T) {
+func TestHashicorp(t *testing.T) {
 	for i, testCase := range testCases {
-		constraint, err := masterminds.NewConstraint(testCase.Constraint)
+		constraint, err := hashicorp.NewConstraint(testCase.Constraint)
 		if err != nil {
-			t.Errorf("%d: Masterminds lib could not parse %q constraint", i+1, testCase.Constraint)
+			t.Errorf("%d: hashicorp lib could not parse %q constraint", i+1, testCase.Constraint)
 			continue
 		}
 		for _, semverString := range testCase.Semvers {
-			semver, err := masterminds.NewVersion(semverString)
+			semver, err := hashicorp.NewSemver(semverString)
 			if err != nil {
-				t.Errorf("%d: Masterminds lib could not parse %q as semver", i+1, semverString)
+				t.Errorf("%d: hashicorp lib could not parse %q as semver", i+1, semverString)
 				continue
 			}
 
