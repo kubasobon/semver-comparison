@@ -58,10 +58,12 @@ var testCases = []Case{
 	// wildcards (x, *, incomplete versions)
 	{Constraint: "5.x.x", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
 	{Constraint: "5.*.*", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
+	{Constraint: "5.*.*", Semvers: []string{"v5.0", "v5"}, ExpectedMatch: true},
 	{Constraint: "5.x", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
 	{Constraint: "5.*", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
-	{Constraint: "5", Semvers: []string{"5.0.0", "5.1.0", "5.3.17"}, ExpectedMatch: true},
-	{Constraint: "5.*.*", Semvers: []string{"v5.0", "v5"}, ExpectedMatch: true},
+	{Constraint: "5.0.0", Semvers: []string{"5.0.0", "5.0", "5"}, ExpectedMatch: true},
+	{Constraint: "5.0", Semvers: []string{"5.0.0", "5.0", "5"}, ExpectedMatch: true},
+	{Constraint: "5", Semvers: []string{"5.0.0", "5.0", "5"}, ExpectedMatch: true},
 	// ranges, hyphen ranges, AND, OR, exclusions
 	{Constraint: "0.5.0 - 2.0.0", Semvers: []string{"0.5.0", "1.2.3", "2.0.0"}, ExpectedMatch: true},
 	{Constraint: ">=0.5.0 <=2.0.0", Semvers: []string{"0.5.0", "1.2.3", "2.0.0"}, ExpectedMatch: true},
